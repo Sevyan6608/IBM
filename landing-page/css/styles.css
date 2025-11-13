@@ -1044,6 +1044,10 @@ p {
     position: relative;
     overflow: hidden;
     padding: var(--spacing-lg) 0;
+    width: 100%;
+    /* Add subtle gradient fade on edges */
+    mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
 }
 
 .clients-carousel {
@@ -1052,10 +1056,18 @@ p {
     padding: 0 var(--spacing-md);
     cursor: grab;
     user-select: none;
+    will-change: transform;
+    /* Smooth hardware acceleration */
+    transform: translate3d(0, 0, 0);
 }
 
 .clients-carousel:active {
     cursor: grabbing;
+}
+
+/* Remove pointer events during animation */
+.clients-carousel.is-animating {
+    pointer-events: none;
 }
 
 .client-logo {
@@ -1068,11 +1080,15 @@ p {
     justify-content: center;
     padding: var(--spacing-md);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    will-change: transform;
+    backface-visibility: hidden;
+    /* Prevent blur during transform */
+    transform: translate3d(0, 0, 0);
 }
 
 .client-logo:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) translate3d(0, 0, 0);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
 }
 
@@ -1083,11 +1099,17 @@ p {
     filter: grayscale(100%);
     opacity: 0.7;
     transition: all 0.3s ease;
+    pointer-events: none; /* Prevent image from interfering with drag */
 }
 
 .client-logo:hover img {
     filter: grayscale(0%);
     opacity: 1;
+}
+
+/* Active drag state */
+.clients-carousel:active .client-logo {
+    transition: none;
 }
 
 .drag-hint {

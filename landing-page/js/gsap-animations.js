@@ -232,42 +232,132 @@
 
         // ===================================
         // CLIENT LOGOS CAROUSEL WITH INERTIA
+        // Professional horizontal draggable carousel
         // ===================================
         const clientsCarousel = document.getElementById('clientsCarousel');
         const clientsWrapper = document.querySelector('.clients-carousel-wrapper');
 
         if (clientsCarousel && clientsWrapper) {
-            // Make carousel draggable with Inertia
-            Draggable.create(clientsCarousel, {
+            const clientLogos = gsap.utils.toArray('.client-logo');
+
+            // Set up horizontal layout with proper spacing
+            gsap.set(clientsCarousel, {
+                display: 'flex',
+                flexWrap: 'nowrap',
+                width: 'auto'
+            });
+
+            // Calculate bounds dynamically
+            function getMaxX() {
+                return -(clientsCarousel.offsetWidth - clientsWrapper.offsetWidth);
+            }
+
+            // Create draggable instance with InertiaPlugin
+            const draggable = Draggable.create(clientsCarousel, {
                 type: 'x',
                 edgeResistance: 0.65,
-                bounds: {
-                    minX: -(clientsCarousel.scrollWidth - clientsWrapper.offsetWidth + 40),
-                    maxX: 0
-                },
+                bounds: clientsWrapper,
                 inertia: true,
-                throwProps: true,
-                snap: {
-                    x: function(endValue) {
-                        return Math.round(endValue / 220) * 220;
+                dragResistance: 0.3,
+                // Smooth momentum scrolling
+                onDrag: function() {
+                    // Add subtle scale effect while dragging
+                    gsap.to(clientLogos, {
+                        scale: 0.95,
+                        duration: 0.3,
+                        overwrite: 'auto'
+                    });
+                },
+                onDragEnd: function() {
+                    // Reset scale after drag
+                    gsap.to(clientLogos, {
+                        scale: 1,
+                        duration: 0.5,
+                        ease: 'elastic.out(1, 0.5)',
+                        overwrite: 'auto'
+                    });
+                },
+                onThrowUpdate: function() {
+                    // Ensure stays within bounds during throw
+                    const maxX = getMaxX();
+                    if (this.x < maxX) {
+                        this.x = maxX;
+                    } else if (this.x > 0) {
+                        this.x = 0;
                     }
+                }
+            })[0];
+
+            // Auto-play on load (optional subtle movement to show it's draggable)
+            gsap.to(clientsCarousel, {
+                x: -100,
+                duration: 1.5,
+                ease: 'power2.inOut',
+                delay: 0.5,
+                onComplete: () => {
+                    // Bounce back slightly
+                    gsap.to(clientsCarousel, {
+                        x: -50,
+                        duration: 0.8,
+                        ease: 'elastic.out(1, 0.5)'
+                    });
                 }
             });
 
-            // Entrance animation for client logos
-            const clientLogos = document.querySelectorAll('.client-logo');
+            // Entrance animation for client logos with stagger
             gsap.from(clientLogos, {
                 scrollTrigger: {
                     trigger: clientsCarousel,
                     start: 'top 80%',
                     toggleActions: 'play none none none'
                 },
-                duration: 0.6,
+                duration: 0.8,
                 opacity: 0,
                 scale: 0.8,
-                y: 30,
-                stagger: 0.1,
-                ease: 'back.out(1.2)'
+                y: 40,
+                rotationY: -15,
+                stagger: {
+                    amount: 0.8,
+                    ease: 'power1.inOut'
+                },
+                ease: 'back.out(1.4)'
+            });
+
+            // Update bounds on window resize
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    draggable.applyBounds(clientsWrapper);
+                    // Reset position if out of bounds
+                    const maxX = getMaxX();
+                    if (draggable.x < maxX) {
+                        gsap.to(clientsCarousel, {
+                            x: maxX,
+                            duration: 0.3
+                        });
+                    }
+                }, 250);
+            });
+
+            // Keyboard navigation (optional enhancement)
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                    const direction = e.key === 'ArrowLeft' ? 1 : -1;
+                    const distance = 220; // Width of one logo + gap
+                    const newX = draggable.x + (direction * distance);
+                    const maxX = getMaxX();
+                    const clampedX = Math.max(maxX, Math.min(0, newX));
+
+                    gsap.to(clientsCarousel, {
+                        x: clampedX,
+                        duration: 0.6,
+                        ease: 'power2.out',
+                        onUpdate: () => {
+                            draggable.update();
+                        }
+                    });
+                }
             });
         }
 
