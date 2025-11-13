@@ -10,18 +10,22 @@
     window.addEventListener('load', function() {
 
         // Register GSAP plugins
-        gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText, Draggable, InertiaPlugin);
+        gsap.registerPlugin(ScrollTrigger, SplitText, Draggable, InertiaPlugin);
 
         // ===================================
-        // SMOOTH SCROLL SETUP
+        // SMOOTH SCROLL SETUP (OPTIONAL)
+        // ScrollSmoother requires Club GreenSock membership
+        // Using native smooth scrolling instead
         // ===================================
-        const smoother = ScrollSmoother.create({
-            wrapper: '#smooth-wrapper',
-            content: '#smooth-content',
-            smooth: 1.5,
-            effects: true,
-            smoothTouch: 0.1,
-        });
+        // If you have Club GreenSock, uncomment:
+        // gsap.registerPlugin(ScrollSmoother);
+        // const smoother = ScrollSmoother.create({
+        //     wrapper: '#smooth-wrapper',
+        //     content: '#smooth-content',
+        //     smooth: 1.5,
+        //     effects: true,
+        //     smoothTouch: 0.1,
+        // });
 
         // ===================================
         // SPLIT TEXT FOR H1 AND H2 ELEMENTS
@@ -240,26 +244,31 @@
         if (clientsCarousel && clientsWrapper) {
             const clientLogos = gsap.utils.toArray('.client-logo');
 
-            // Set up horizontal layout with proper spacing
-            gsap.set(clientsCarousel, {
-                display: 'flex',
-                flexWrap: 'nowrap',
-                width: 'auto'
-            });
+            console.log('Client carousel initialized');
+            console.log('Carousel element:', clientsCarousel);
+            console.log('Number of logos:', clientLogos.length);
 
             // Calculate bounds dynamically
             function getMaxX() {
-                return -(clientsCarousel.offsetWidth - clientsWrapper.offsetWidth);
+                const maxScroll = -(clientsCarousel.scrollWidth - clientsWrapper.offsetWidth);
+                console.log('Max scroll:', maxScroll);
+                return maxScroll;
             }
 
             // Create draggable instance with InertiaPlugin
-            const draggable = Draggable.create(clientsCarousel, {
+            const draggableInstance = Draggable.create(clientsCarousel, {
                 type: 'x',
                 edgeResistance: 0.65,
-                bounds: clientsWrapper,
+                bounds: {
+                    minX: getMaxX(),
+                    maxX: 0
+                },
                 inertia: true,
+                throwProps: true,
                 dragResistance: 0.3,
-                // Smooth momentum scrolling
+                onDragStart: function() {
+                    console.log('Drag started');
+                },
                 onDrag: function() {
                     // Add subtle scale effect while dragging
                     gsap.to(clientLogos, {
@@ -269,6 +278,7 @@
                     });
                 },
                 onDragEnd: function() {
+                    console.log('Drag ended');
                     // Reset scale after drag
                     gsap.to(clientLogos, {
                         scale: 1,
@@ -276,33 +286,32 @@
                         ease: 'elastic.out(1, 0.5)',
                         overwrite: 'auto'
                     });
-                },
-                onThrowUpdate: function() {
-                    // Ensure stays within bounds during throw
-                    const maxX = getMaxX();
-                    if (this.x < maxX) {
-                        this.x = maxX;
-                    } else if (this.x > 0) {
-                        this.x = 0;
-                    }
                 }
             })[0];
 
+            console.log('Draggable created:', draggableInstance);
+
             // Auto-play on load (optional subtle movement to show it's draggable)
-            gsap.to(clientsCarousel, {
-                x: -100,
-                duration: 1.5,
-                ease: 'power2.inOut',
-                delay: 0.5,
-                onComplete: () => {
-                    // Bounce back slightly
-                    gsap.to(clientsCarousel, {
-                        x: -50,
-                        duration: 0.8,
-                        ease: 'elastic.out(1, 0.5)'
-                    });
-                }
-            });
+            setTimeout(() => {
+                gsap.to(clientsCarousel, {
+                    x: -100,
+                    duration: 1.5,
+                    ease: 'power2.inOut',
+                    onComplete: () => {
+                        // Bounce back slightly
+                        gsap.to(clientsCarousel, {
+                            x: -50,
+                            duration: 0.8,
+                            ease: 'elastic.out(1, 0.5)',
+                            onUpdate: () => {
+                                if (draggableInstance) {
+                                    draggableInstance.update();
+                                }
+                            }
+                        });
+                    }
+                });
+            }, 1000);
 
             // Entrance animation for client logos with stagger
             gsap.from(clientLogos, {
@@ -315,7 +324,6 @@
                 opacity: 0,
                 scale: 0.8,
                 y: 40,
-                rotationY: -15,
                 stagger: {
                     amount: 0.8,
                     ease: 'power1.inOut'
@@ -328,13 +336,10 @@
             window.addEventListener('resize', () => {
                 clearTimeout(resizeTimer);
                 resizeTimer = setTimeout(() => {
-                    draggable.applyBounds(clientsWrapper);
-                    // Reset position if out of bounds
-                    const maxX = getMaxX();
-                    if (draggable.x < maxX) {
-                        gsap.to(clientsCarousel, {
-                            x: maxX,
-                            duration: 0.3
+                    if (draggableInstance) {
+                        draggableInstance.applyBounds({
+                            minX: getMaxX(),
+                            maxX: 0
                         });
                     }
                 }, 250);
@@ -343,9 +348,12 @@
             // Keyboard navigation (optional enhancement)
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                    if (!draggableInstance) return;
+
                     const direction = e.key === 'ArrowLeft' ? 1 : -1;
                     const distance = 220; // Width of one logo + gap
-                    const newX = draggable.x + (direction * distance);
+                    const currentX = gsap.getProperty(clientsCarousel, 'x');
+                    const newX = currentX + (direction * distance);
                     const maxX = getMaxX();
                     const clampedX = Math.max(maxX, Math.min(0, newX));
 
@@ -354,10 +362,15 @@
                         duration: 0.6,
                         ease: 'power2.out',
                         onUpdate: () => {
-                            draggable.update();
+                            draggableInstance.update();
                         }
                     });
                 }
+            });
+        } else {
+            console.error('Client carousel elements not found:', {
+                carousel: clientsCarousel,
+                wrapper: clientsWrapper
             });
         }
 
