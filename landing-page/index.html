@@ -37,24 +37,6 @@
     <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="skip-link">Към основното съдържание</a>
 
-    <!-- Dark Mode Toggle -->
-    <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode">
-        <svg class="sun-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-        <svg class="moon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-    </button>
-
     <!-- Smooth Scroll Wrapper -->
     <div id="smooth-wrapper">
     <div id="smooth-content">
@@ -63,19 +45,35 @@
     <header class="header">
         <nav class="nav-container">
             <div class="nav-logo">
-                <img src="images/a1-logo.svg" alt="A1 България" class="logo" width="80" height="40">
+                <img src="https://www.a1.bg/mgw-web/cms/media?Name=nav-logo&Size=default&cacheId=" alt="A1 България" class="logo" width="80" height="40">
             </div>
             <button class="mobile-menu-toggle" aria-label="Меню" aria-expanded="false">
                 <span class="hamburger"></span>
             </button>
             <ul class="nav-menu">
-                <li><a href="#solutions">Решения за бизнеса</a></li>
-                <li><a href="#projects">Успешни проекти</a></li>
-                <li><a href="#resources">Ресурси</a></li>
-                <li><a href="#contacts">Контакти</a></li>
+                <li><a href="#solutions">Защо да изберете нас</a></li>
+                <li><a href="#products">Решения за бизнеса</a></li>
+                <li><a href="#clients">Нашите клиенти</a></li>
+                <li><a href="#contact-form">Контакти</a></li>
             </ul>
-            <div class="nav-cta">
-                <a href="#contact-form" class="btn btn-primary">Заявете консултация</a>
+            <div class="nav-actions">
+                <button id="darkModeToggle" class="dark-mode-toggle-header" aria-label="Toggle dark mode" title="Превключване тъмен режим">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <a href="#contact-form" class="btn btn-primary nav-cta-btn">Заявете консултация</a>
             </div>
         </nav>
     </header>
@@ -244,6 +242,60 @@
             </div>
         </section>
 
+        <!-- Client Logos Section -->
+        <section id="clients" class="clients-section">
+            <div class="container">
+                <h2 class="section-title">Нашите клиенти вече се доверяват на IBM решенията</h2>
+                <p class="section-subtitle">Водещи български и международни компании използват IBM технологии за своя успех</p>
+
+                <div class="clients-carousel-wrapper">
+                    <div class="clients-carousel" id="clientsCarousel">
+                        <!-- Client Logo 1 -->
+                        <div class="client-logo">
+                            <img src="images/clients/client-1.png" alt="Client 1" loading="lazy">
+                        </div>
+                        <!-- Client Logo 2 -->
+                        <div class="client-logo">
+                            <img src="images/clients/client-2.png" alt="Client 2" loading="lazy">
+                        </div>
+                        <!-- Client Logo 3 -->
+                        <div class="client-logo">
+                            <img src="images/clients/client-3.png" alt="Client 3" loading="lazy">
+                        </div>
+                        <!-- Client Logo 4 -->
+                        <div class="client-logo">
+                            <img src="images/clients/client-4.png" alt="Client 4" loading="lazy">
+                        </div>
+                        <!-- Client Logo 5 -->
+                        <div class="client-logo">
+                            <img src="images/clients/client-5.png" alt="Client 5" loading="lazy">
+                        </div>
+                        <!-- Client Logo 6 -->
+                        <div class="client-logo">
+                            <img src="images/clients/client-6.png" alt="Client 6" loading="lazy">
+                        </div>
+                        <!-- Client Logo 7 -->
+                        <div class="client-logo">
+                            <img src="images/clients/client-7.png" alt="Client 7" loading="lazy">
+                        </div>
+                        <!-- Client Logo 8 -->
+                        <div class="client-logo">
+                            <img src="images/clients/client-8.png" alt="Client 8" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="drag-hint">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                        <span>Плъзнете за повече</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Form Section -->
         <section id="contact-form" class="contact-section">
             <div class="container">
@@ -255,11 +307,6 @@
                         <p>След като подадете заявката, нашият екип от експерти ще се свърже с Вас в рамките на 24 часа.</p>
                         <p>Ще обсъдим вашите специфични нужди и ще предложим персонализирано решение, адаптирано към вашия бизнес.</p>
                         <p>Всяка консултация е напълно безплатна и без ангажименти.</p>
-
-                        <div class="contact-details">
-                            <p><strong>Телефон:</strong> <a href="tel:+359888123456">+359 888 123 456</a></p>
-                            <p><strong>Email:</strong> <a href="mailto:ibm@a1.bg">ibm@a1.bg</a></p>
-                        </div>
                     </div>
 
                     <div class="contact-form-wrapper">
@@ -317,49 +364,103 @@
         </section>
     </main>
 
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Обратно нагоре" title="Обратно нагоре">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-logo">
-                    <img src="images/a1-logo.svg" alt="A1 България" width="100" height="50">
-                    <p class="footer-tagline">Водещ доставчик на телекомуникационни и IT услуги в България</p>
-                </div>
-
-                <div class="footer-links">
-                    <h4>Навигация</h4>
+            <div class="footer-main">
+                <div class="footer-column">
+                    <h4>За А1</h4>
                     <ul>
-                        <li><a href="#solutions">Решения за бизнеса</a></li>
-                        <li><a href="#projects">Успешни проекти</a></li>
-                        <li><a href="#resources">Ресурси</a></li>
-                        <li><a href="#contacts">Контакти</a></li>
+                        <li><a href="https://www.a1.bg/bg/za-a1/za-nas" target="_blank">За нас</a></li>
+                        <li><a href="https://www.a1.bg/bg/za-a1/5g" target="_blank">5G мрежа</a></li>
+                        <li><a href="https://www.a1.bg/bg/za-a1/nagradi" target="_blank">Награди</a></li>
+                        <li><a href="https://www.a1.bg/bg/za-a1/otgovornost" target="_blank">Отговорност</a></li>
                     </ul>
                 </div>
 
-                <div class="footer-links">
-                    <h4>Информация</h4>
+                <div class="footer-column">
+                    <h4>Кариери</h4>
                     <ul>
-                        <li><a href="#">Политика за поверителност</a></li>
-                        <li><a href="#">Общи условия</a></li>
-                        <li><a href="#">Cookies</a></li>
-                        <li><a href="#">GDPR</a></li>
+                        <li><a href="https://careers.a1.bg/" target="_blank">Кариерен портал</a></li>
+                        <li><a href="https://www.a1.bg/bg/za-a1/partniorstva" target="_blank">Партньорства</a></li>
                     </ul>
                 </div>
 
-                <div class="footer-contact">
-                    <h4>Контакти</h4>
-                    <p>Телефон: <a href="tel:+359888123456">+359 888 123 456</a></p>
-                    <p>Email: <a href="mailto:ibm@a1.bg">ibm@a1.bg</a></p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-                        <a href="#" aria-label="LinkedIn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-                        <a href="#" aria-label="Twitter"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
-                    </div>
+                <div class="footer-column">
+                    <h4>Медия център</h4>
+                    <ul>
+                        <li><a href="https://www.a1.bg/bg/za-a1/media-centar/novini" target="_blank">Новини</a></li>
+                        <li><a href="https://www.a1.bg/bg/za-a1/media-centar/sponzorstva" target="_blank">Спонзорства</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Помощ</h4>
+                    <ul>
+                        <li><a href="https://www.a1.bg/bg/pomosht/magazini" target="_blank">Магазини</a></li>
+                        <li><a href="https://www.a1.bg/bg/pomosht/obshti-uslovia" target="_blank">Общи условия</a></li>
+                        <li><a href="https://www.a1.bg/bg/pomosht/upravlenie-na-lichni-danni" target="_blank">Управление на лични данни</a></li>
+                        <li><a href="https://www.a1.bg/bg/pomosht/karti-na-pokritie" target="_blank">Карти на покритие</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Устройства</h4>
+                    <ul>
+                        <li><a href="https://www.a1.bg/bg/ustroistva/smartfoni" target="_blank">Смартфони</a></li>
+                        <li><a href="https://www.a1.bg/bg/ustroistva/televizori" target="_blank">Телевизори</a></li>
+                        <li><a href="https://www.a1.bg/bg/ustroistva/laptopi" target="_blank">Лаптопи</a></li>
+                        <li><a href="https://www.a1.bg/bg/ustroistva/aksesovari" target="_blank">Аксесоари</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Услуги</h4>
+                    <ul>
+                        <li><a href="https://www.a1.bg/bg/uslugi/paketi" target="_blank">Пакети</a></li>
+                        <li><a href="https://www.a1.bg/bg/uslugi/za-doma" target="_blank">За дома</a></li>
+                        <li><a href="https://www.a1.bg/bg/uslugi/za-biznes" target="_blank">За бизнеса</a></li>
+                        <li><a href="https://www.a1.bg/bg/uslugi/max-sport" target="_blank">MAX Sport</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-social">
+                <div class="social-links">
+                    <a href="https://www.facebook.com/A1Bulgaria" target="_blank" aria-label="Facebook">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.youtube.com/user/A1Bulgaria" target="_blank" aria-label="YouTube">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23 9.71a8.5 8.5 0 00-.91-4.13 2.92 2.92 0 00-1.72-1A78.36 78.36 0 0012 4.27a78.45 78.45 0 00-8.34.3 2.87 2.87 0 00-1.46.74c-.9.83-1 2.25-1.1 3.45a48.29 48.29 0 000 6.48 9.55 9.55 0 00.3 2.12 3.14 3.14 0 00.71 1.36 3.11 3.11 0 001.53.78 45.18 45.18 0 006.48.33c3.23.03 6.47.03 9.7.03a8.86 8.86 0 002.22-.27 2.76 2.76 0 001.53-.78 3.35 3.35 0 00.71-1.36 48.29 48.29 0 00.33-6.48zM9.74 14.85V8.66l5.92 3.11c-1.66.92-3.85 1.96-5.92 3.08z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/a1bulgaria/" target="_blank" aria-label="Instagram">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/a1-bulgaria" target="_blank" aria-label="LinkedIn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                            <circle cx="4" cy="4" r="2"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2025 A1 България. Всички права запазени.</p>
+                <p>&copy; 2025 А1 България. Всички права запазени.</p>
             </div>
         </div>
     </footer>

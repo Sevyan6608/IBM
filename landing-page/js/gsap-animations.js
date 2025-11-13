@@ -231,6 +231,47 @@
         }
 
         // ===================================
+        // CLIENT LOGOS CAROUSEL WITH INERTIA
+        // ===================================
+        const clientsCarousel = document.getElementById('clientsCarousel');
+        const clientsWrapper = document.querySelector('.clients-carousel-wrapper');
+
+        if (clientsCarousel && clientsWrapper) {
+            // Make carousel draggable with Inertia
+            Draggable.create(clientsCarousel, {
+                type: 'x',
+                edgeResistance: 0.65,
+                bounds: {
+                    minX: -(clientsCarousel.scrollWidth - clientsWrapper.offsetWidth + 40),
+                    maxX: 0
+                },
+                inertia: true,
+                throwProps: true,
+                snap: {
+                    x: function(endValue) {
+                        return Math.round(endValue / 220) * 220;
+                    }
+                }
+            });
+
+            // Entrance animation for client logos
+            const clientLogos = document.querySelectorAll('.client-logo');
+            gsap.from(clientLogos, {
+                scrollTrigger: {
+                    trigger: clientsCarousel,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                },
+                duration: 0.6,
+                opacity: 0,
+                scale: 0.8,
+                y: 30,
+                stagger: 0.1,
+                ease: 'back.out(1.2)'
+            });
+        }
+
+        // ===================================
         // FOOTER FADE IN
         // ===================================
         const footer = document.querySelector('.footer');

@@ -170,6 +170,94 @@ The contact form:
 
 ## 🔧 Customization
 
+### Using Custom Fonts
+
+#### Method 1: Google Fonts (Recommended for Quick Setup)
+
+Already implemented in `index.html`:
+```html
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+```
+
+To change to a different Google Font:
+1. Visit [Google Fonts](https://fonts.google.com/)
+2. Select your desired font and weights
+3. Replace the link in `index.html` line 18
+4. Update CSS variable in `styles.css`:
+```css
+:root {
+    --font-family: 'Your-Font-Name', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+```
+
+#### Method 2: Self-Hosted Fonts (Better Performance)
+
+**Step 1: Download Font Files**
+
+Download your font files in WOFF2 and WOFF formats (these are web-optimized).
+
+**Step 2: Create Fonts Directory**
+```bash
+mkdir landing-page/fonts
+```
+
+**Step 3: Add Font Files**
+
+Place your font files (e.g., `CustomFont-Regular.woff2`, `CustomFont-Bold.woff2`) in the `fonts` directory.
+
+**Step 4: Add @font-face Rules**
+
+Add this to the top of `landing-page/css/styles.css`:
+```css
+@font-face {
+    font-family: 'CustomFont';
+    src: url('../fonts/CustomFont-Regular.woff2') format('woff2'),
+         url('../fonts/CustomFont-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap; /* Improves loading performance */
+}
+
+@font-face {
+    font-family: 'CustomFont';
+    src: url('../fonts/CustomFont-Bold.woff2') format('woff2'),
+         url('../fonts/CustomFont-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+```
+
+**Step 5: Update CSS Variable**
+```css
+:root {
+    --font-family: 'CustomFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+```
+
+**Step 6: Remove Google Fonts Link**
+
+Remove or comment out the Google Fonts link in `index.html`.
+
+#### Font Loading Best Practices
+
+1. **Preload Important Fonts**: Add to `<head>` in `index.html`:
+```html
+<link rel="preload" href="fonts/CustomFont-Regular.woff2" as="font" type="font/woff2" crossorigin>
+```
+
+2. **Use font-display: swap**: Prevents invisible text during loading
+3. **Subset Fonts**: If using Latin characters only, use font subsets to reduce file size
+4. **Limit Font Weights**: Only include the weights you actually use (e.g., 400, 600, 700)
+
+### Add Client Logos
+
+Replace the placeholder logos in `landing-page/images/clients/`:
+- Use PNG with transparent background or JPG
+- Recommended size: 400x200px (2:1 ratio)
+- Keep files under 100KB each
+- Name files descriptively: `client-company-name.png`
+
 ### Change GSAP Animation Speed
 Edit `landing-page/js/gsap-animations.js`:
 ```javascript

@@ -266,9 +266,32 @@
     }
 
     // ===================================
+    // Back to Top Button
+    // ===================================
+    const backToTopButton = document.getElementById('backToTop');
+
+    if (backToTopButton) {
+        // Show/hide button based on scroll position
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        // Scroll to top on click
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // ===================================
     // Console Message (Development)
     // ===================================
     console.log('A1 Bulgaria IBM Landing Page loaded successfully');
-    console.log('For support, contact: ibm@a1.bg');
 
 })();
