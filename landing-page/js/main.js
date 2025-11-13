@@ -7,6 +7,34 @@
     'use strict';
 
     // ===================================
+    // Dark Mode Toggle
+    // ===================================
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const htmlElement = document.documentElement;
+
+    // Check for saved theme preference or default to 'light'
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    htmlElement.setAttribute('data-theme', currentTheme);
+
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', function() {
+            const theme = htmlElement.getAttribute('data-theme');
+            const newTheme = theme === 'light' ? 'dark' : 'light';
+
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            // Send event to Google Analytics
+            if (typeof dataLayer !== 'undefined') {
+                dataLayer.push({
+                    'event': 'dark_mode_toggle',
+                    'theme': newTheme
+                });
+            }
+        });
+    }
+
+    // ===================================
     // Mobile Menu Toggle
     // ===================================
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');

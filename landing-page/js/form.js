@@ -9,10 +9,9 @@
     // ===================================
     // Configuration
     // ===================================
-    const EMAILJS_CONFIG = {
-        PUBLIC_KEY: 'YOUR_PUBLIC_KEY',       // Replace with your EmailJS public key
-        SERVICE_ID: 'YOUR_SERVICE_ID',       // Replace with your EmailJS service ID
-        TEMPLATE_ID: 'YOUR_TEMPLATE_ID'      // Replace with your EmailJS template ID
+    const FORM_CONFIG = {
+        ENDPOINT: 'send-email.php',  // PHP endpoint for form submission
+        TIMEOUT: 10000               // Request timeout in milliseconds
     };
 
     // ===================================
@@ -234,34 +233,43 @@
                 });
             }
 
-            // Check if EmailJS is properly configured
-            if (EMAILJS_CONFIG.PUBLIC_KEY === 'YOUR_PUBLIC_KEY' ||
-                EMAILJS_CONFIG.SERVICE_ID === 'YOUR_SERVICE_ID' ||
-                EMAILJS_CONFIG.TEMPLATE_ID === 'YOUR_TEMPLATE_ID') {
+            // Send email via PHP endpoint
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), FORM_CONFIG.TIMEOUT);
 
-                console.warn('EmailJS is not configured. Please update the configuration in form.js');
-
-                // Simulate success for demonstration (remove in production)
-                setTimeout(() => {
-                    handleFormSuccess(submitButton, originalButtonText);
-                    console.log('Form data (demo mode):', formData);
-                }, 1000);
-
-                return;
-            }
-
-            // Send email via EmailJS
-            emailjs.send(
-                EMAILJS_CONFIG.SERVICE_ID,
-                EMAILJS_CONFIG.TEMPLATE_ID,
-                formData
-            )
+            fetch(FORM_CONFIG.ENDPOINT, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+                signal: controller.signal
+            })
             .then(function(response) {
-                console.log('EmailJS SUCCESS:', response.status, response.text);
-                handleFormSuccess(submitButton, originalButtonText);
+                clearTimeout(timeoutId);
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.status);
+                }
+
+                return response.json();
+            })
+            .then(function(data) {
+                if (data.success) {
+                    console.log('Form submission SUCCESS:', data.message);
+                    handleFormSuccess(submitButton, originalButtonText);
+                } else {
+                    throw new Error(data.message || 'Unknown error occurred');
+                }
             })
             .catch(function(error) {
-                console.error('EmailJS ERROR:', error);
+                clearTimeout(timeoutId);
+                console.error('Form submission ERROR:', error);
+
+                if (error.name === 'AbortError') {
+                    console.error('Request timeout');
+                }
+
                 handleFormError(submitButton, originalButtonText);
             });
         });
@@ -474,9 +482,7 @@
     // ===================================
     // Console Message
     // ===================================
-    console.log('Form validation and EmailJS handler initialized');
-    if (EMAILJS_CONFIG.PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
-        console.warn('⚠️ EmailJS not configured. Update EMAILJS_CONFIG in form.js');
-    }
+    console.log('Form validation and PHP SMTP handler initialized');
+    console.log('Form endpoint: ' + FORM_CONFIG.ENDPOINT);
 
 })();
