@@ -140,8 +140,20 @@ prepare_files() {
     if [ -f "cache.php" ]; then
         cp cache.php "$DEPLOY_DIR/"
     fi
+    if [ -f "cache-config.php" ]; then
+        cp cache-config.php "$DEPLOY_DIR/"
+    fi
     if [ -f "cache-example.php" ]; then
         cp cache-example.php "$DEPLOY_DIR/"
+    fi
+    if [ -f "index-cached.php" ]; then
+        cp index-cached.php "$DEPLOY_DIR/"
+    fi
+    if [ -f "test-redis.php" ]; then
+        cp test-redis.php "$DEPLOY_DIR/"
+    fi
+    if [ -f "clear-cache.php" ]; then
+        cp clear-cache.php "$DEPLOY_DIR/"
     fi
 
     # .htaccess
