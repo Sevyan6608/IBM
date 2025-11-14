@@ -1033,6 +1033,10 @@ p {
 
     .challenges-solutions-wrapper {
         background-attachment: scroll;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                    url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80');
+        background-size: cover;
+        background-position: center;
     }
 
     .challenges-solutions-grid {
@@ -1122,7 +1126,8 @@ p {
     }
 
     .nav-actions {
-        display: none;
+        display: flex;
+        gap: var(--spacing-xs);
     }
 
     /* Show mobile toggle, hide desktop toggle */
@@ -1134,13 +1139,13 @@ p {
         display: none;
     }
 
-    .mobile-dark-mode-wrapper {
+    /* Show dark mode toggle on mobile in nav-actions */
+    .nav-actions .dark-mode-toggle-header {
         display: flex;
-        width: 100%;
     }
 
-    .mobile-dark-mode-wrapper .dark-mode-toggle-header {
-        margin-right: 0;
+    .mobile-dark-mode-wrapper {
+        display: none;
     }
 
     .nav-cta-btn {
