@@ -1185,13 +1185,15 @@ p {
     overflow: hidden;
     padding: var(--spacing-lg) 0;
     width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
     /* Add subtle gradient fade on edges */
     mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
 }
 
 .clients-carousel {
-    display: flex;
+    display: inline-flex;
     gap: var(--spacing-lg);
     padding: 0 var(--spacing-md);
     cursor: grab;
@@ -1199,6 +1201,7 @@ p {
     will-change: transform;
     /* Smooth hardware acceleration */
     transform: translate3d(0, 0, 0);
+    position: relative;
 }
 
 .clients-carousel:active {

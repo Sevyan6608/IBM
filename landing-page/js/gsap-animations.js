@@ -267,11 +267,15 @@
             console.log('Client carousel initialized');
             console.log('Carousel element:', clientsCarousel);
             console.log('Number of logos:', clientLogos.length);
+            console.log('Carousel width:', clientsCarousel.scrollWidth);
+            console.log('Wrapper width:', clientsWrapper.offsetWidth);
 
             // Calculate bounds dynamically
             function getMaxX() {
-                const maxScroll = -(clientsCarousel.scrollWidth - clientsWrapper.offsetWidth);
-                console.log('Max scroll:', maxScroll);
+                const wrapperWidth = clientsWrapper.offsetWidth;
+                const carouselWidth = clientsCarousel.scrollWidth;
+                const maxScroll = -(carouselWidth - wrapperWidth);
+                console.log('Bounds - Wrapper:', wrapperWidth, 'Carousel:', carouselWidth, 'MaxX:', maxScroll);
                 return maxScroll;
             }
 
@@ -279,59 +283,38 @@
             const draggableInstance = Draggable.create(clientsCarousel, {
                 type: 'x',
                 edgeResistance: 0.65,
-                bounds: {
-                    minX: getMaxX(),
-                    maxX: 0
-                },
+                bounds: clientsWrapper,
                 inertia: true,
                 throwProps: true,
-                dragResistance: 0.3,
+                maxDuration: 0.8,
+                minDuration: 0.3,
+                overshootTolerance: 0,
+                onPress: function() {
+                    console.log('Press detected');
+                },
                 onDragStart: function() {
                     console.log('Drag started');
+                    gsap.to(clientsCarousel, {
+                        cursor: 'grabbing',
+                        duration: 0.1
+                    });
                 },
                 onDrag: function() {
-                    // Add subtle scale effect while dragging
-                    gsap.to(clientLogos, {
-                        scale: 0.95,
-                        duration: 0.3,
-                        overwrite: 'auto'
-                    });
+                    console.log('Dragging - x:', this.x);
                 },
                 onDragEnd: function() {
-                    console.log('Drag ended');
-                    // Reset scale after drag
-                    gsap.to(clientLogos, {
-                        scale: 1,
-                        duration: 0.5,
-                        ease: 'elastic.out(1, 0.5)',
-                        overwrite: 'auto'
+                    console.log('Drag ended at x:', this.x);
+                    gsap.to(clientsCarousel, {
+                        cursor: 'grab',
+                        duration: 0.1
                     });
+                },
+                onThrowUpdate: function() {
+                    console.log('Throwing - x:', this.x);
                 }
             })[0];
 
-            console.log('Draggable created:', draggableInstance);
-
-            // Auto-play on load (optional subtle movement to show it's draggable)
-            setTimeout(() => {
-                gsap.to(clientsCarousel, {
-                    x: -100,
-                    duration: 1.5,
-                    ease: 'power2.inOut',
-                    onComplete: () => {
-                        // Bounce back slightly
-                        gsap.to(clientsCarousel, {
-                            x: -50,
-                            duration: 0.8,
-                            ease: 'elastic.out(1, 0.5)',
-                            onUpdate: () => {
-                                if (draggableInstance) {
-                                    draggableInstance.update();
-                                }
-                            }
-                        });
-                    }
-                });
-            }, 1000);
+            console.log('Draggable instance created:', draggableInstance);
 
             // Entrance animation for client logos with stagger
             gsap.from(clientLogos, {
@@ -357,36 +340,36 @@
                 clearTimeout(resizeTimer);
                 resizeTimer = setTimeout(() => {
                     if (draggableInstance) {
+                        console.log('Updating bounds after resize');
                         draggableInstance.applyBounds({
                             minX: getMaxX(),
                             maxX: 0
                         });
+                        draggableInstance.update();
                     }
                 }, 250);
             });
 
-            // Keyboard navigation (optional enhancement)
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-                    if (!draggableInstance) return;
-
-                    const direction = e.key === 'ArrowLeft' ? 1 : -1;
-                    const distance = 220; // Width of one logo + gap
-                    const currentX = gsap.getProperty(clientsCarousel, 'x');
-                    const newX = currentX + (direction * distance);
-                    const maxX = getMaxX();
-                    const clampedX = Math.max(maxX, Math.min(0, newX));
-
-                    gsap.to(clientsCarousel, {
-                        x: clampedX,
-                        duration: 0.6,
-                        ease: 'power2.out',
-                        onUpdate: () => {
-                            draggableInstance.update();
-                        }
-                    });
-                }
-            });
+            // Initial subtle animation hint
+            setTimeout(() => {
+                gsap.to(clientsCarousel, {
+                    x: -100,
+                    duration: 1,
+                    ease: 'power2.out',
+                    onComplete: () => {
+                        gsap.to(clientsCarousel, {
+                            x: -50,
+                            duration: 0.6,
+                            ease: 'power2.inOut',
+                            onUpdate: () => {
+                                if (draggableInstance) {
+                                    draggableInstance.update();
+                                }
+                            }
+                        });
+                    }
+                });
+            }, 1500);
         } else {
             console.error('Client carousel elements not found:', {
                 carousel: clientsCarousel,
