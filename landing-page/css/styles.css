@@ -462,6 +462,10 @@ p {
     padding: 80px 0;
 }
 
+[data-theme="dark"] .hero-section {
+    background: var(--color-bg-white);
+}
+
 .hero-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1193,9 +1197,16 @@ p {
         margin-bottom: var(--spacing-md);
     }
 
-    .footer-grid,
-    .footer-main {
+    .footer-grid {
         grid-template-columns: 1fr;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-column:nth-child(5) {
+        grid-column: 1 / -1;
     }
 
     .hero-section,
@@ -1204,6 +1215,10 @@ p {
     .contact-section,
     .clients-section {
         padding: var(--spacing-lg) 0;
+    }
+
+    .hero-section {
+        padding-top: 40px;
     }
 
     .section-title {
