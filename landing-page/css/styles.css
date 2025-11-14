@@ -653,22 +653,32 @@ p {
 
 .challenge-list li,
 .solution-list li {
-    padding-left: var(--spacing-md);
+    padding-left: 32px;
     margin-bottom: var(--spacing-sm);
     position: relative;
     color: var(--color-text-light);
 }
 
-.challenge-list li::before,
-.solution-list li::before {
-    content: '';
+.challenge-list li::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    content: '\f06a';
     position: absolute;
     left: 0;
-    top: 10px;
-    width: 6px;
-    height: 6px;
-    background-color: var(--color-primary);
-    border-radius: 50%;
+    top: 2px;
+    color: var(--color-primary);
+    font-size: 1.125rem;
+}
+
+.solution-list li::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    content: '\f058';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: var(--color-primary);
+    font-size: 1.125rem;
 }
 
 /* ===================================

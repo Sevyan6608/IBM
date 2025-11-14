@@ -298,9 +298,4 @@
         });
     }
 
-    // ===================================
-    // Console Message (Development)
-    // ===================================
-    console.log('A1 Bulgaria IBM Landing Page loaded successfully');
-
 })();

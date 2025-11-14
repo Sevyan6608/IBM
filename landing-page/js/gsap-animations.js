@@ -10,51 +10,60 @@
     window.addEventListener('load', function() {
 
         // Register GSAP plugins
-        gsap.registerPlugin(ScrollTrigger, SplitText, Draggable, InertiaPlugin);
+        gsap.registerPlugin(ScrollTrigger, Draggable, InertiaPlugin);
 
-        // ===================================
-        // SMOOTH SCROLL SETUP (OPTIONAL)
-        // ScrollSmoother requires Club GreenSock membership
-        // Using native smooth scrolling instead
-        // ===================================
-        // If you have Club GreenSock, uncomment:
-        // gsap.registerPlugin(ScrollSmoother);
-        // const smoother = ScrollSmoother.create({
-        //     wrapper: '#smooth-wrapper',
-        //     content: '#smooth-content',
-        //     smooth: 1.5,
-        //     effects: true,
-        //     smoothTouch: 0.1,
-        // });
+        // Try to register SplitText if available
+        if (typeof SplitText !== 'undefined') {
+            gsap.registerPlugin(SplitText);
+        }
 
         // ===================================
         // SPLIT TEXT FOR H1 AND H2 ELEMENTS
         // ===================================
-        const headings = document.querySelectorAll('h1, h2');
+        if (typeof SplitText !== 'undefined') {
+            const headings = document.querySelectorAll('h1, h2');
 
-        headings.forEach(heading => {
-            // Split text into words
-            const split = new SplitText(heading, {
-                type: 'words',
-                wordsClass: 'split-word'
-            });
+            headings.forEach(heading => {
+                // Split text into words
+                const split = new SplitText(heading, {
+                    type: 'words',
+                    wordsClass: 'split-word'
+                });
 
-            // Animate words on scroll
-            gsap.from(split.words, {
-                scrollTrigger: {
-                    trigger: heading,
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
-                },
-                duration: 0.6,
-                opacity: 0,
-                y: 30,
-                rotationX: -90,
-                transformOrigin: '0% 50% -50',
-                stagger: 0.05,
-                ease: 'power2.out'
+                // Animate words on scroll
+                gsap.from(split.words, {
+                    scrollTrigger: {
+                        trigger: heading,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    duration: 0.6,
+                    opacity: 0,
+                    y: 30,
+                    rotationX: -90,
+                    transformOrigin: '0% 50% -50',
+                    stagger: 0.05,
+                    ease: 'power2.out'
+                });
             });
-        });
+        } else {
+            // Fallback: Simple fade-in animation for headings
+            const headings = document.querySelectorAll('h1, h2');
+
+            headings.forEach(heading => {
+                gsap.from(heading, {
+                    scrollTrigger: {
+                        trigger: heading,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    duration: 0.8,
+                    opacity: 0,
+                    y: 30,
+                    ease: 'power2.out'
+                });
+            });
+        }
 
         // ===================================
         // PARALLAX EFFECT - PRODUCTS SECTION
@@ -264,18 +273,11 @@
         if (clientsCarousel && clientsWrapper) {
             const clientLogos = gsap.utils.toArray('.client-logo');
 
-            console.log('Client carousel initialized');
-            console.log('Carousel element:', clientsCarousel);
-            console.log('Number of logos:', clientLogos.length);
-            console.log('Carousel width:', clientsCarousel.scrollWidth);
-            console.log('Wrapper width:', clientsWrapper.offsetWidth);
-
             // Calculate bounds dynamically
             function getMaxX() {
                 const wrapperWidth = clientsWrapper.offsetWidth;
                 const carouselWidth = clientsCarousel.scrollWidth;
                 const maxScroll = -(carouselWidth - wrapperWidth);
-                console.log('Bounds - Wrapper:', wrapperWidth, 'Carousel:', carouselWidth, 'MaxX:', maxScroll);
                 return maxScroll;
             }
 
@@ -289,32 +291,19 @@
                 maxDuration: 0.8,
                 minDuration: 0.3,
                 overshootTolerance: 0,
-                onPress: function() {
-                    console.log('Press detected');
-                },
                 onDragStart: function() {
-                    console.log('Drag started');
                     gsap.to(clientsCarousel, {
                         cursor: 'grabbing',
                         duration: 0.1
                     });
                 },
-                onDrag: function() {
-                    console.log('Dragging - x:', this.x);
-                },
                 onDragEnd: function() {
-                    console.log('Drag ended at x:', this.x);
                     gsap.to(clientsCarousel, {
                         cursor: 'grab',
                         duration: 0.1
                     });
-                },
-                onThrowUpdate: function() {
-                    console.log('Throwing - x:', this.x);
                 }
             })[0];
-
-            console.log('Draggable instance created:', draggableInstance);
 
             // Entrance animation for client logos with stagger
             gsap.from(clientLogos, {
@@ -340,7 +329,6 @@
                 clearTimeout(resizeTimer);
                 resizeTimer = setTimeout(() => {
                     if (draggableInstance) {
-                        console.log('Updating bounds after resize');
                         draggableInstance.applyBounds({
                             minX: getMaxX(),
                             maxX: 0
@@ -370,11 +358,6 @@
                     }
                 });
             }, 1500);
-        } else {
-            console.error('Client carousel elements not found:', {
-                carousel: clientsCarousel,
-                wrapper: clientsWrapper
-            });
         }
 
         // ===================================
@@ -430,7 +413,6 @@
             }, 250);
         });
 
-        console.log('GSAP animations initialized successfully');
     });
 
 })();
