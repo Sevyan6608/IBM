@@ -493,6 +493,61 @@ p {
 }
 
 /* ===================================
+   Hero Section Redesign
+   =================================== */
+.hero-banners-redesign {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.banner-main {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #B82318 100%);
+    padding: var(--spacing-xl);
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-main::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.banner-main-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    width: 100%;
+}
+
+.banner-main .ibm-logo {
+    margin: 0 auto var(--spacing-md) auto;
+    display: block;
+    filter: brightness(0) invert(1);
+}
+
+.banner-title {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: white;
+    margin: 0;
+}
+
+/* ===================================
    Technology Solutions Section
    =================================== */
 .tech-solutions-section {
@@ -969,6 +1024,15 @@ p {
 
     .banner-grid {
         grid-template-columns: 1fr;
+    }
+
+    .banner-title {
+        font-size: 1.5rem;
+    }
+
+    .banner-main {
+        padding: var(--spacing-lg);
+        min-height: 200px;
     }
 
     .usp-grid {

@@ -138,30 +138,50 @@
         }
 
         // ===================================
-        // HERO SECTION ANIMATIONS
+        // HERO SECTION ANIMATIONS (REDESIGNED)
         // ===================================
-        const heroContent = document.querySelector('.hero-content');
-        const heroBanners = document.querySelectorAll('.product-banner');
+        const bannerMain = document.querySelector('.banner-main');
+        const heroBanners = document.querySelectorAll('.hero-banners-redesign .product-banner');
 
-        if (heroContent) {
-            gsap.from(heroContent, {
-                duration: 1,
+        if (bannerMain) {
+            // Animate main banner
+            gsap.from(bannerMain, {
+                duration: 1.2,
                 opacity: 0,
+                scale: 0.9,
                 y: 60,
                 ease: 'power3.out',
                 delay: 0.2
             });
+
+            // Animate IBM logo and title separately
+            gsap.from('.banner-main .ibm-logo', {
+                duration: 0.8,
+                opacity: 0,
+                y: -20,
+                ease: 'power2.out',
+                delay: 0.5
+            });
+
+            gsap.from('.banner-title', {
+                duration: 1,
+                opacity: 0,
+                y: 20,
+                ease: 'power2.out',
+                delay: 0.7
+            });
         }
 
         if (heroBanners.length > 0) {
-            gsap.from(heroBanners, {
+            // Animate smaller banners
+            gsap.from('.banner-grid .product-banner', {
                 duration: 0.8,
                 opacity: 0,
                 scale: 0.8,
                 y: 40,
-                stagger: 0.1,
+                stagger: 0.15,
                 ease: 'back.out(1.4)',
-                delay: 0.5
+                delay: 1
             });
         }
 
