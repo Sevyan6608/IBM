@@ -10,7 +10,7 @@
     window.addEventListener('load', function() {
 
         // Register GSAP plugins
-        gsap.registerPlugin(ScrollTrigger, Draggable, InertiaPlugin);
+        gsap.registerPlugin(ScrollTrigger, Draggable);
 
         // Try to register SplitText if available
         if (typeof SplitText !== 'undefined') {
@@ -161,7 +161,6 @@
                     edgeResistance: 0.65,
                     bounds: wrapper,
                     inertia: true,
-                    throwProps: true,
                     snap: {
                         x: function(endValue) {
                             return Math.round(endValue / 300) * 300;

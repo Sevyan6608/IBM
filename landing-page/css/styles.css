@@ -217,6 +217,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+    padding-top: 72px;
+}
+
 img {
     max-width: 100%;
     height: auto;
@@ -346,8 +350,11 @@ p {
 .header {
     background-color: var(--color-bg-white);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
     z-index: 1000;
 }
 
@@ -448,7 +455,7 @@ p {
    =================================== */
 .hero-section {
     background: linear-gradient(135deg, var(--color-bg-light) 0%, #ffffff 100%);
-    padding: var(--spacing-xxl) 0;
+    padding: 40px 0;
 }
 
 .hero-grid {
@@ -611,7 +618,7 @@ p {
    Technology Solutions Section
    =================================== */
 .tech-solutions-section {
-    padding: var(--spacing-xxl) 0;
+    padding: var(--spacing-xxl) 0 0 0;
     background-color: var(--color-bg-white);
 }
 
