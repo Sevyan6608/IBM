@@ -1081,8 +1081,7 @@ p {
         border-top: 1px solid #D0D0D0;
     }
 
-    .nav-menu a,
-    .nav-menu .dark-mode-toggle-header {
+    .nav-menu a {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -1094,11 +1093,6 @@ p {
         border: none;
         border-radius: 0;
         text-align: left;
-    }
-
-    /* Mobile menu dark mode button - white text and icon */
-    .nav-menu .dark-mode-toggle-header svg {
-        color: #ffffff;
     }
 
     .nav-menu a:hover {
@@ -1126,8 +1120,7 @@ p {
     }
 
     .nav-actions {
-        display: flex;
-        gap: var(--spacing-xs);
+        display: none;
     }
 
     /* Show mobile toggle, hide desktop toggle */
@@ -1139,23 +1132,30 @@ p {
         display: none;
     }
 
-    /* Show dark mode toggle on mobile in nav-actions */
-    .nav-actions .dark-mode-toggle-header {
+    .mobile-dark-mode-wrapper {
         display: flex;
+        width: 100%;
+        padding: var(--spacing-md) var(--spacing-lg);
     }
 
-    .mobile-dark-mode-wrapper {
+    .mobile-dark-mode-wrapper .dark-mode-toggle-header {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        padding: 0;
+        margin: 0 auto;
+        border: 2px solid var(--color-border);
+    }
+
+    .mobile-dark-mode-wrapper .dark-mode-label {
         display: none;
     }
 
     .nav-cta-btn {
         display: none;
-    }
-
-    .dark-mode-toggle-header {
-        width: auto;
-        height: auto;
-        padding: var(--spacing-md) var(--spacing-lg);
     }
 
     .banner-grid {
@@ -1223,7 +1223,7 @@ p {
     }
 
     .hero-section {
-        padding-top: 40px;
+        padding-top: 80px;
     }
 
     .section-title {
