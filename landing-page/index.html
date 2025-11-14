@@ -12,16 +12,28 @@
     <meta name="twitter:card" content="summary_large_image">
     <title>IBM решения за бизнеса от A1 България</title>
 
-    <!-- Preconnect to optimize font loading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="preload" href="fonts/A1Sans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/A1Serif-Bold.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Font Awesome - Load asynchronously -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+    <script>
+        // Fallback for browsers that don't support onload on link tags
+        var fontAwesomeLink = document.querySelector('link[href*="font-awesome"]');
+        if (fontAwesomeLink && !fontAwesomeLink.onload) {
+            fontAwesomeLink.rel = 'stylesheet';
+        }
+    </script>
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
