@@ -337,29 +337,6 @@
         }
 
         // ===================================
-        // BUTTON HOVER EFFECTS
-        // ===================================
-        const buttons = document.querySelectorAll('.btn-primary');
-
-        buttons.forEach(btn => {
-            btn.addEventListener('mouseenter', function() {
-                gsap.to(this, {
-                    scale: 1.05,
-                    duration: 0.3,
-                    ease: 'power2.out'
-                });
-            });
-
-            btn.addEventListener('mouseleave', function() {
-                gsap.to(this, {
-                    scale: 1,
-                    duration: 0.3,
-                    ease: 'power2.out'
-                });
-            });
-        });
-
-        // ===================================
         // REFRESH SCROLLTRIGGER ON RESIZE
         // ===================================
         let resizeTimer;
