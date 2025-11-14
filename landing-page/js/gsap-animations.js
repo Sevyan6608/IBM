@@ -138,20 +138,20 @@
         }
 
         // ===================================
-        // HERO SECTION ANIMATIONS (REDESIGNED)
+        // HERO SECTION ANIMATIONS (GRID LAYOUT)
         // ===================================
         const bannerMain = document.querySelector('.banner-main');
-        const heroBanners = document.querySelectorAll('.hero-banners-redesign .product-banner');
+        const bannerSmall = document.querySelectorAll('.banner-small');
 
         if (bannerMain) {
-            // Animate main banner
+            // Animate main banner (right side, spans 2 rows)
             gsap.from(bannerMain, {
                 duration: 1.2,
                 opacity: 0,
-                scale: 0.9,
-                y: 60,
+                scale: 0.95,
+                x: 60,
                 ease: 'power3.out',
-                delay: 0.2
+                delay: 0.3
             });
 
             // Animate IBM logo and title separately
@@ -160,7 +160,7 @@
                 opacity: 0,
                 y: -20,
                 ease: 'power2.out',
-                delay: 0.5
+                delay: 0.6
             });
 
             gsap.from('.banner-title', {
@@ -168,20 +168,20 @@
                 opacity: 0,
                 y: 20,
                 ease: 'power2.out',
-                delay: 0.7
+                delay: 0.8
             });
         }
 
-        if (heroBanners.length > 0) {
-            // Animate smaller banners
-            gsap.from('.banner-grid .product-banner', {
+        if (bannerSmall.length > 0) {
+            // Animate smaller banners (left side, stacked)
+            gsap.from(bannerSmall, {
                 duration: 0.8,
                 opacity: 0,
-                scale: 0.8,
-                y: 40,
-                stagger: 0.15,
+                x: -40,
+                y: 20,
+                stagger: 0.2,
                 ease: 'back.out(1.4)',
-                delay: 1
+                delay: 0.5
             });
         }
 
