@@ -165,23 +165,6 @@
                 ease: 'power3.out',
                 delay: 0.3
             });
-
-            // Animate IBM logo and title separately
-            gsap.from('.banner-main .ibm-logo', {
-                duration: 0.8,
-                opacity: 0,
-                y: -20,
-                ease: 'power2.out',
-                delay: 0.6
-            });
-
-            gsap.from('.banner-title', {
-                duration: 1,
-                opacity: 0,
-                y: 20,
-                ease: 'power2.out',
-                delay: 0.8
-            });
         }
 
         if (bannerSmall.length > 0) {
