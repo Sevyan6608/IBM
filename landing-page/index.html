@@ -74,7 +74,6 @@
                 </li>
                 <li><a href="#solutions">Защо да изберете нас</a></li>
                 <li><a href="#products">Решения за бизнеса</a></li>
-                <li><a href="#clients">Нашите клиенти</a></li>
                 <li><a href="#contact-form">Контакти</a></li>
             </ul>
             <div class="nav-actions">
@@ -257,60 +256,6 @@
             </div>
         </section>
 
-        <!-- Client Logos Section -->
-        <section id="clients" class="clients-section">
-            <div class="container">
-                <h2 class="section-title">Нашите клиенти вече се доверяват на IBM решенията</h2>
-                <p class="section-subtitle">Водещи български и международни компании използват IBM технологии за своя успех</p>
-
-                <div class="clients-carousel-wrapper">
-                    <div class="clients-carousel" id="clientsCarousel">
-                        <!-- Client Logo 1 (Placeholder - A1) -->
-                        <div class="client-logo">
-                            <img src="https://www.a1.bg/mgw-web/cms/media?Name=nav-logo&Size=default&cacheId=" alt="Client Logo 1" loading="lazy">
-                        </div>
-                        <!-- Client Logo 2 (Placeholder - A1) -->
-                        <div class="client-logo">
-                            <img src="https://www.a1.bg/mgw-web/cms/media?Name=nav-logo&Size=default&cacheId=" alt="Client Logo 2" loading="lazy">
-                        </div>
-                        <!-- Client Logo 3 (Placeholder - A1) -->
-                        <div class="client-logo">
-                            <img src="https://www.a1.bg/mgw-web/cms/media?Name=nav-logo&Size=default&cacheId=" alt="Client Logo 3" loading="lazy">
-                        </div>
-                        <!-- Client Logo 4 (Placeholder - A1) -->
-                        <div class="client-logo">
-                            <img src="https://www.a1.bg/mgw-web/cms/media?Name=nav-logo&Size=default&cacheId=" alt="Client Logo 4" loading="lazy">
-                        </div>
-                        <!-- Client Logo 5 (Placeholder - A1) -->
-                        <div class="client-logo">
-                            <img src="https://www.a1.bg/mgw-web/cms/media?Name=nav-logo&Size=default&cacheId=" alt="Client Logo 5" loading="lazy">
-                        </div>
-                        <!-- Client Logo 6 (Placeholder - A1) -->
-                        <div class="client-logo">
-                            <img src="https://www.a1.bg/mgw-web/cms/media?Name=nav-logo&Size=default&cacheId=" alt="Client Logo 6" loading="lazy">
-                        </div>
-                        <!-- Client Logo 7 (Placeholder - A1) -->
-                        <div class="client-logo">
-                            <img src="https://www.a1.bg/mgw-web/cms/media?Name=nav-logo&Size=default&cacheId=" alt="Client Logo 7" loading="lazy">
-                        </div>
-                        <!-- Client Logo 8 (Placeholder - A1) -->
-                        <div class="client-logo">
-                            <img src="https://www.a1.bg/mgw-web/cms/media?Name=nav-logo&Size=default&cacheId=" alt="Client Logo 8" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="drag-hint">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="15 18 9 12 15 6"></polyline>
-                        </svg>
-                        <span>Плъзнете за повече</span>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Contact Form Section -->
         <section id="contact-form" class="contact-section">
             <div class="container">
@@ -351,14 +296,13 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="service">За моя услуга *</label>
+                                <label for="service">За коя услуга *</label>
                                 <select id="service" name="service" required aria-required="true">
                                     <option value="">Изберете услуга</option>
                                     <option value="IBM Storage">IBM Storage</option>
                                     <option value="IBM Maximo IT">IBM Maximo IT</option>
                                     <option value="IBM Watsonx">IBM Watsonx</option>
-                                    <option value="Общ интерес">Общ интерес</option>
-                                    <option value="Друго">Друго</option>
+                                    <option value="Повече от една">Повече от една</option>
                                 </select>
                                 <span class="error-message" aria-live="polite"></span>
                             </div>
@@ -435,16 +379,6 @@
                         <li><a href="https://www.a1.bg/bg/ustroistva/aksesovari" target="_blank">Аксесоари</a></li>
                     </ul>
                 </div>
-
-                <div class="footer-column">
-                    <h4>Услуги</h4>
-                    <ul>
-                        <li><a href="https://www.a1.bg/bg/uslugi/paketi" target="_blank">Пакети</a></li>
-                        <li><a href="https://www.a1.bg/bg/uslugi/za-doma" target="_blank">За дома</a></li>
-                        <li><a href="https://www.a1.bg/bg/uslugi/za-biznes" target="_blank">За бизнеса</a></li>
-                        <li><a href="https://www.a1.bg/bg/uslugi/max-sport" target="_blank">MAX Sport</a></li>
-                    </ul>
-                </div>
             </div>
 
             <div class="footer-social">
@@ -460,9 +394,10 @@
                         </svg>
                     </a>
                     <a href="https://www.instagram.com/a1bulgaria/" target="_blank" aria-label="Instagram">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
                         </svg>
                     </a>
                     <a href="https://www.linkedin.com/company/a1-bulgaria" target="_blank" aria-label="LinkedIn">
