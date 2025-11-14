@@ -1,0 +1,27 @@
+{
+  "name": "ibm-landing-page",
+  "version": "1.0.0",
+  "description": "IBM solutions landing page for A1 Bulgaria",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "node build.js --watch",
+    "build:css": "cleancss -o css/styles.min.css css/styles.css",
+    "build:js": "npm run build:js:main && npm run build:js:animations && npm run build:js:form",
+    "build:js:main": "terser js/main.js -c -m -o js/main.min.js",
+    "build:js:animations": "terser js/gsap-animations.js -c -m -o js/gsap-animations.min.js",
+    "build:js:form": "terser js/form.js -c -m -o js/form.min.js"
+  },
+  "devDependencies": {
+    "chokidar": "^3.5.3",
+    "clean-css-cli": "^5.6.3",
+    "terser": "^5.27.0"
+  },
+  "keywords": [
+    "ibm",
+    "landing-page",
+    "a1-bulgaria"
+  ],
+  "author": "A1 Bulgaria",
+  "license": "UNLICENSED",
+  "private": true
+}
