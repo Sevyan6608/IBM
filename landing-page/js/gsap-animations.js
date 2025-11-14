@@ -18,6 +18,46 @@
         }
 
         // ===================================
+        // STICKY NAVBAR WITH HIDE/SHOW ON SCROLL
+        // ===================================
+        const header = document.querySelector('.header');
+        let lastScrollY = 0;
+        let ticking = false;
+
+        ScrollTrigger.create({
+            start: 'top -80',
+            end: 99999,
+            onUpdate: (self) => {
+                const currentScrollY = self.scroll();
+
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                            // Scrolling down - hide navbar
+                            gsap.to(header, {
+                                y: -100,
+                                duration: 0.3,
+                                ease: 'power2.out'
+                            });
+                        } else if (currentScrollY < lastScrollY) {
+                            // Scrolling up - show navbar
+                            gsap.to(header, {
+                                y: 0,
+                                duration: 0.3,
+                                ease: 'power2.out'
+                            });
+                        }
+
+                        lastScrollY = currentScrollY;
+                        ticking = false;
+                    });
+
+                    ticking = true;
+                }
+            }
+        });
+
+        // ===================================
         // SPLIT TEXT FOR H1 AND H2 ELEMENTS
         // ===================================
         if (typeof SplitText !== 'undefined') {

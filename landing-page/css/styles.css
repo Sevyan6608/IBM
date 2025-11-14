@@ -641,12 +641,14 @@ p {
     margin-top: var(--spacing-xl);
     padding: var(--spacing-xxl) 0;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23DA291C;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%23000000;stop-opacity:0.1"/></linearGradient></defs><rect fill="url(%23grad)" width="1200" height="600"/></svg>');
+                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     position: relative;
     overflow: hidden;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
 }
 
 .challenges-solutions-wrapper::before {
@@ -672,6 +674,15 @@ p {
     gap: var(--spacing-xl);
     position: relative;
     z-index: 1;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.challenges-column,
+.solutions-column {
+    display: flex;
+    flex-direction: column;
 }
 
 .challenge-box,
@@ -681,6 +692,9 @@ p {
     border-radius: var(--border-radius);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     transition: var(--transition);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .challenge-box:hover,
@@ -833,6 +847,13 @@ p {
     grid-template-columns: 1fr 1.5fr;
     gap: var(--spacing-xl);
     margin-top: var(--spacing-xl);
+    align-items: start;
+}
+
+.contact-info {
+    position: sticky;
+    top: 100px;
+    align-self: start;
 }
 
 .contact-info h3 {
@@ -950,96 +971,6 @@ p {
     background-color: var(--color-text-light);
     cursor: not-allowed;
     transform: none;
-}
-
-/* ===================================
-   Footer
-   =================================== */
-.footer {
-    background-color: var(--color-secondary);
-    color: var(--color-bg-white);
-    padding: var(--spacing-xl) 0 var(--spacing-md);
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: var(--spacing-xl);
-    margin-bottom: var(--spacing-lg);
-}
-
-.footer-logo img {
-    margin-bottom: var(--spacing-sm);
-    filter: brightness(0) invert(1);
-}
-
-.footer-tagline {
-    color: #CCCCCC;
-    font-size: 0.875rem;
-}
-
-.footer-links h4 {
-    margin-bottom: var(--spacing-md);
-    color: var(--color-bg-white);
-}
-
-.footer-links ul {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-}
-
-.footer-links a {
-    color: #CCCCCC;
-    font-size: 0.875rem;
-}
-
-.footer-links a:hover {
-    color: var(--color-primary);
-}
-
-.footer-contact h4 {
-    margin-bottom: var(--spacing-md);
-    color: var(--color-bg-white);
-}
-
-.footer-contact p {
-    color: #CCCCCC;
-    font-size: 0.875rem;
-    margin-bottom: var(--spacing-xs);
-}
-
-.footer-contact a {
-    color: var(--color-primary);
-}
-
-.social-links {
-    display: flex;
-    gap: var(--spacing-sm);
-    margin-top: var(--spacing-md);
-}
-
-.social-links a {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    transition: var(--transition);
-}
-
-.social-links a:hover {
-    background-color: var(--color-primary);
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: var(--spacing-md);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: #CCCCCC;
-    font-size: 0.875rem;
 }
 
 /* ===================================
