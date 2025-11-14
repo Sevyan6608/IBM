@@ -701,7 +701,7 @@ p {
     margin-top: var(--spacing-xl);
     padding: var(--spacing-xxl) 0;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80');
+                url('../images/hero-background.jpeg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1057,7 +1057,7 @@ p {
     .challenges-solutions-wrapper {
         background-attachment: scroll;
         background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                    url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80');
+                    url('../images/hero-background-mobile.jpeg');
         background-size: cover;
         background-position: center;
     }
