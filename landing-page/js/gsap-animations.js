@@ -195,10 +195,25 @@
         }
 
         // ===================================
-        // CHALLENGES & SOLUTIONS ANIMATION
+        // CHALLENGES & SOLUTIONS ANIMATION WITH PARALLAX
         // ===================================
+        const challengesWrapper = document.querySelector('.challenges-solutions-wrapper');
         const challengesColumn = document.querySelector('.challenges-column');
         const solutionsColumn = document.querySelector('.solutions-column');
+
+        // Parallax effect for the wrapper background
+        if (challengesWrapper) {
+            gsap.to(challengesWrapper, {
+                scrollTrigger: {
+                    trigger: challengesWrapper,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 1
+                },
+                backgroundPositionY: '20%',
+                ease: 'none'
+            });
+        }
 
         if (challengesColumn) {
             gsap.from(challengesColumn, {

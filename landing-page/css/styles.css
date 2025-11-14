@@ -637,11 +637,56 @@ p {
     color: var(--color-text-light);
 }
 
+.challenges-solutions-wrapper {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-xxl) 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23DA291C;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%23000000;stop-opacity:0.1"/></linearGradient></defs><rect fill="url(%23grad)" width="1200" height="600"/></svg>');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+}
+
+.challenges-solutions-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(218, 41, 28, 0.03) 10px,
+        rgba(218, 41, 28, 0.03) 20px
+    );
+    pointer-events: none;
+}
+
 .challenges-solutions-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-xl);
-    margin-top: var(--spacing-xl);
+    position: relative;
+    z-index: 1;
+}
+
+.challenge-box,
+.solution-box {
+    background: var(--color-bg-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transition: var(--transition);
+}
+
+.challenge-box:hover,
+.solution-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
 }
 
 .challenges-column h3,
@@ -1019,6 +1064,10 @@ p {
 
     .product-image {
         height: 250px;
+    }
+
+    .challenges-solutions-wrapper {
+        background-attachment: scroll;
     }
 
     .challenges-solutions-grid {
