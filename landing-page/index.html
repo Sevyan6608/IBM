@@ -45,19 +45,37 @@
     <header class="header">
         <nav class="nav-container">
             <div class="nav-logo">
-                <img src="https://www.a1.bg/mgw-web/cms/media?Name=nav-logo&Size=default&cacheId=" alt="A1 България" class="logo" width="80" height="40">
+                <img src="https://www.a1.bg/mgw-web/cms/media?Name=nav-logo&Size=default&cacheId=" alt="A1 България" class="logo" width="160" height="80">
             </div>
             <button class="mobile-menu-toggle" aria-label="Меню" aria-expanded="false">
                 <span class="hamburger"></span>
             </button>
             <ul class="nav-menu">
+                <li class="mobile-dark-mode-wrapper">
+                    <button id="darkModeToggleMobile" class="dark-mode-toggle-header mobile-only" aria-label="Toggle dark mode" title="Превключване тъмен режим">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </li>
                 <li><a href="#solutions">Защо да изберете нас</a></li>
                 <li><a href="#products">Решения за бизнеса</a></li>
                 <li><a href="#clients">Нашите клиенти</a></li>
                 <li><a href="#contact-form">Контакти</a></li>
             </ul>
             <div class="nav-actions">
-                <button id="darkModeToggle" class="dark-mode-toggle-header" aria-label="Toggle dark mode" title="Превключване тъмен режим">
+                <button id="darkModeToggle" class="dark-mode-toggle-header desktop-only" aria-label="Toggle dark mode" title="Превключване тъмен режим">
                     <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="5"></circle>
                         <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -86,7 +104,7 @@
                     <!-- Banner 1 - Main Title Banner (spans 2 rows) -->
                     <div class="product-banner banner-large banner-main">
                         <div class="banner-main-content">
-                            <img src="images/ibm-logo.svg" alt="IBM" class="ibm-logo" width="80" height="32" loading="eager">
+                            <img src="images/ibm-logo.svg" alt="IBM" class="ibm-logo" width="200" height="80" loading="eager">
                             <h1 class="banner-title">IBM решения за растеж и устойчивост на Вашия бизнес от A1 България</h1>
                         </div>
                     </div>
