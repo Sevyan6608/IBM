@@ -58,10 +58,10 @@
         });
 
         // ===================================
-        // SPLIT TEXT FOR H1 AND H2 ELEMENTS
+        // SPLIT TEXT FOR H2 ELEMENTS ONLY
         // ===================================
         if (typeof SplitText !== 'undefined') {
-            const headings = document.querySelectorAll('h1, h2');
+            const headings = document.querySelectorAll('h2');
 
             headings.forEach(heading => {
                 // Split text into words
@@ -87,8 +87,8 @@
                 });
             });
         } else {
-            // Fallback: Simple fade-in animation for headings
-            const headings = document.querySelectorAll('h1, h2');
+            // Fallback: Simple fade-in animation for h2 headings
+            const headings = document.querySelectorAll('h2');
 
             headings.forEach(heading => {
                 gsap.from(heading, {
@@ -106,26 +106,11 @@
         }
 
         // ===================================
-        // PARALLAX EFFECT - PRODUCTS SECTION
+        // PRODUCTS SECTION ENTRANCE ANIMATION
         // ===================================
         const productCards = document.querySelectorAll('.product-card');
 
         productCards.forEach((card, index) => {
-            const image = card.querySelector('.product-image img');
-
-            if (image) {
-                gsap.to(image, {
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top bottom',
-                        end: 'bottom top',
-                        scrub: 1
-                    },
-                    y: index % 2 === 0 ? '-20%' : '20%',
-                    ease: 'none'
-                });
-            }
-
             // Card entrance animation
             gsap.from(card, {
                 scrollTrigger: {
@@ -142,33 +127,12 @@
         });
 
         // ===================================
-        // INERTIA PLUGIN - ADVANTAGES SECTION
-        // (USP Cards with draggable carousel)
+        // USP CARDS ENTRANCE ANIMATION
         // ===================================
         const uspGrid = document.querySelector('.usp-grid');
         const uspCards = document.querySelectorAll('.usp-card');
 
         if (uspGrid && uspCards.length > 0) {
-            // Make USP cards draggable horizontally on mobile/tablet
-            if (window.innerWidth < 1024) {
-                const wrapper = document.createElement('div');
-                wrapper.className = 'usp-draggable-wrapper';
-                uspGrid.parentNode.insertBefore(wrapper, uspGrid);
-                wrapper.appendChild(uspGrid);
-
-                Draggable.create(uspGrid, {
-                    type: 'x',
-                    edgeResistance: 0.65,
-                    bounds: wrapper,
-                    inertia: true,
-                    snap: {
-                        x: function(endValue) {
-                            return Math.round(endValue / 300) * 300;
-                        }
-                    }
-                });
-            }
-
             // Entrance animation for USP cards with stagger
             gsap.from(uspCards, {
                 scrollTrigger: {
