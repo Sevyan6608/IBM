@@ -10,8 +10,8 @@
     // Configuration
     // ===================================
     const FORM_CONFIG = {
-        ENDPOINT: 'send-email.php',  // PHP endpoint for form submission
-        TIMEOUT: 10000               // Request timeout in milliseconds
+        ENDPOINT: '/send-email.php',  // PHP endpoint for form submission (absolute path)
+        TIMEOUT: 10000                // Request timeout in milliseconds
     };
 
     // ===================================
