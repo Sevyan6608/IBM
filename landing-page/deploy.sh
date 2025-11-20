@@ -118,6 +118,7 @@ prepare_files() {
     cp js/main.min.js "$DEPLOY_DIR/js/"
     cp js/gsap-animations.min.js "$DEPLOY_DIR/js/"
     cp js/form.min.js "$DEPLOY_DIR/js/"
+    cp js/translations.js "$DEPLOY_DIR/js/" # Required for multilingual support
     cp js/main.js "$DEPLOY_DIR/js/" # Keep originals for debugging
     cp js/gsap-animations.js "$DEPLOY_DIR/js/"
     cp js/form.js "$DEPLOY_DIR/js/"
@@ -130,6 +131,11 @@ prepare_files() {
     # Fonts
     if [ -d "fonts" ]; then
         cp -r fonts "$DEPLOY_DIR/"
+    fi
+
+    # English version
+    if [ -d "en" ]; then
+        cp -r en "$DEPLOY_DIR/"
     fi
 
     # PHP files

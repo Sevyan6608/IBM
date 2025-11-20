@@ -210,11 +210,14 @@
             const submitButton = event.target.querySelector('button[type="submit"]');
             const originalButtonText = submitButton.textContent;
 
+            // Detect current language from URL
+            const currentLang = window.location.pathname.includes('/en') ? 'en' : 'bg';
+
             // Disable button and show loading state
             submitButton.disabled = true;
-            submitButton.textContent = 'Изпраща се...';
+            submitButton.textContent = currentLang === 'en' ? 'Sending...' : 'Изпраща се...';
 
-            // Prepare form data
+            // Prepare form data (email always in Bulgarian, no language parameter needed)
             const formData = {
                 company: formInputs.company.value.trim(),
                 name: formInputs.name.value.trim(),
@@ -279,7 +282,8 @@
     // Success Handler
     // ===================================
     function handleFormSuccess(submitButton, originalButtonText) {
-        submitButton.textContent = 'Изпратено успешно!';
+        const currentLang = window.location.pathname.includes('/en') ? 'en' : 'bg';
+        submitButton.textContent = currentLang === 'en' ? 'Successfully sent!' : 'Изпратено успешно!';
         submitButton.style.backgroundColor = '#28a745';
 
         // Show success message
@@ -332,7 +336,10 @@
     // Success Message Modal
     // ===================================
     function showSuccessMessage() {
-        const message = 'Вашата заявка е изпратена успешно! Ще се свържем с вас скоро.';
+        const currentLang = window.location.pathname.includes('/en') ? 'en' : 'bg';
+        const message = currentLang === 'en'
+            ? 'Your request has been sent successfully! We will contact you soon.'
+            : 'Вашата заявка е изпратена успешно! Ще се свържем с вас скоро.';
         showModal(message, 'success');
     }
 
@@ -340,7 +347,10 @@
     // Error Message Modal
     // ===================================
     function showErrorMessage() {
-        const message = 'Грешка при изпращане. Моля, опитайте отново или се свържете с нас директно на ibm@a1.bg';
+        const currentLang = window.location.pathname.includes('/en') ? 'en' : 'bg';
+        const message = currentLang === 'en'
+            ? 'Error sending your request. Please try again or contact us directly.'
+            : 'Грешка при изпращане. Моля, опитайте отново или се свържете с нас директно.';
         showModal(message, 'error');
     }
 
@@ -348,6 +358,8 @@
     // Simple Modal
     // ===================================
     function showModal(message, type) {
+        const currentLang = window.location.pathname.includes('/en') ? 'en' : 'bg';
+
         // Create modal overlay
         const overlay = document.createElement('div');
         overlay.style.cssText = `
@@ -395,7 +407,7 @@
         messageEl.textContent = message;
 
         const button = document.createElement('button');
-        button.textContent = 'Затвори';
+        button.textContent = currentLang === 'en' ? 'Close' : 'Затвори';
         button.className = 'btn btn-primary';
         button.style.cssText = `
             cursor: pointer;

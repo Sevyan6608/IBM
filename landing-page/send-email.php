@@ -66,8 +66,22 @@ if (isset($_SESSION['last_submission']) && ($current_time - $_SESSION['last_subm
     exit;
 }
 
+// Email content (always in Bulgarian)
+$t = [
+    'subject' => 'Нова заявка за консултация - IBM решения от A1',
+    'header' => 'Нова заявка за консултация',
+    'company' => 'Компания',
+    'name' => 'Име',
+    'phone' => 'Телефон',
+    'email' => 'Email',
+    'service' => 'Услуга',
+    'datetime' => 'Дата и час',
+    'footer_title' => 'IBM решения от A1 България',
+    'footer_text' => 'Автоматично генерирано съобщение от контактната форма'
+];
+
 // Prepare email content
-$subject = 'Нова заявка за консултация - IBM решения от A1';
+$subject = $t['subject'];
 $message = "
 <!DOCTYPE html>
 <html>
@@ -87,37 +101,37 @@ $message = "
 <body>
     <div class='container'>
         <div class='header'>
-            <h2>Нова заявка за консултация</h2>
+            <h2>" . $t['header'] . "</h2>
         </div>
         <div class='content'>
             <div class='field'>
-                <div class='label'>Компания:</div>
+                <div class='label'>" . $t['company'] . ":</div>
                 <div class='value'>" . htmlspecialchars($company) . "</div>
             </div>
             <div class='field'>
-                <div class='label'>Име:</div>
+                <div class='label'>" . $t['name'] . ":</div>
                 <div class='value'>" . htmlspecialchars($name) . "</div>
             </div>
             <div class='field'>
-                <div class='label'>Телефон:</div>
+                <div class='label'>" . $t['phone'] . ":</div>
                 <div class='value'>" . htmlspecialchars($phone) . "</div>
             </div>
             <div class='field'>
-                <div class='label'>Email:</div>
+                <div class='label'>" . $t['email'] . ":</div>
                 <div class='value'>" . htmlspecialchars($email) . "</div>
             </div>
             <div class='field'>
-                <div class='label'>Услуга:</div>
+                <div class='label'>" . $t['service'] . ":</div>
                 <div class='value'>" . htmlspecialchars($service) . "</div>
             </div>
             <div class='field'>
-                <div class='label'>Дата и час:</div>
+                <div class='label'>" . $t['datetime'] . ":</div>
                 <div class='value'>" . htmlspecialchars($timestamp) . "</div>
             </div>
         </div>
         <div class='footer'>
-            <p>IBM решения от A1 България</p>
-            <p>Автоматично генерирано съобщение от контактната форма</p>
+            <p>" . $t['footer_title'] . "</p>
+            <p>" . $t['footer_text'] . "</p>
         </div>
     </div>
 </body>
